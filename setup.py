@@ -31,12 +31,17 @@ To install MySQL Connector/Python:
 
 """
 
-from distutils.core import setup
 from distutils.command.install import INSTALL_SCHEMES
 
 # Make sure that data files are actually installed in the package directory
 for install_scheme in INSTALL_SCHEMES.values():
     install_scheme['data'] = install_scheme['purelib']
+
+try:
+    from setuptools import setup
+except ImportError:
+    from distutils.core import setup
+
 
 import setupinfo
 try:
